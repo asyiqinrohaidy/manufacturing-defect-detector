@@ -15,7 +15,7 @@ actual defect regions, rather than trusted as a black box.
 
 ## Dataset
 
-NEU Surface Defect Database — 1,800 grayscale images (300 per class) of
+NEU Surface Defect Database - 1,800 grayscale images (300 per class) of
 hot-rolled steel strip surfaces, a standard benchmark for industrial defect
 classification research.
 
@@ -52,11 +52,11 @@ the first thing I checked before trusting it. NEU-CLS is a well-documented
 benchmark with visually distinct, lab-clean defect classes, and near-perfect
 accuracy on this dataset is reported elsewhere in the literature, so the score
 itself is plausible. To verify the model wasn't relying on a shortcut (e.g.
-memorizing crops or attending to image borders/lighting artifacts instead of
+memorising crops or attending to image borders/lighting artifacts instead of
 the actual defect), I ran Grad-CAM across a sample of test images from every
-class. In all 30 images checked, the model's attention consistently localized
-on the genuine defect texture — crack lines for crazing, pit clusters for
-pitted surface, scratch marks for scratches, and so on — rather than on
+class. In all 30 images checked, the model's attention consistently localised
+on the genuine defect texture like crack lines for crazing, pit clusters for
+pitted surface, scratch marks for scratches, and so on rather than on
 irrelevant regions. That's the evidence behind trusting this result rather
 than just reporting it.
 
@@ -69,7 +69,7 @@ Heatmaps below show where the model focused when making each prediction
 |---|---|
 | Crazing | Heatmap centers on the fine horizontal crack network |
 | Pitted Surface | Distinct hot spots align with individual pit clusters |
-| Scratches | Tight band of attention directly over the scratch line, including a low-confidence (0.725) case where a faint scratch was still correctly localized |
+| Scratches | Tight band of attention directly over the scratch line, including a low-confidence (0.725) case where a faint scratch was still correctly localised |
 | Inclusion | Attention centers on the blocky dark inclusion artifact |
 | Rolled-in Scale | Hot regions track the irregular rough-textured patches |
 | Patches | More diffuse attention, consistent with patches being broader, lower-contrast blotchy regions |
@@ -86,7 +86,7 @@ manufacturing-defect-detector/
 │   └── metrics.json          # Training history and final metrics
 ├── outputs/
 │   ├── eval/                 # Confusion matrix, classification report, predictions.csv
-│   └── gradcam/              # Grad-CAM heatmap overlays, organized by class
+│   └── gradcam/              # Grad-CAM heatmap overlays, organised by class
 ├── api/
 │   └── main.py               # FastAPI service (predict + Grad-CAM endpoints)
 ├── frontend/
@@ -97,7 +97,7 @@ manufacturing-defect-detector/
 │   ├── train.py              # Training loop
 │   ├── evaluate.py           # Test-set evaluation + confusion matrix
 │   ├── gradcam.py            # Grad-CAM implementation
-│   ├── grad_cam_batch.py     # Batch Grad-CAM visualization over test set
+│   ├── grad_cam_batch.py     # Batch Grad-CAM visualisation over test set
 │   ├── prepare_data.py       # Train/val/test split generation
 │   └── download_data.py      # Dataset download utility
 └── README.md
@@ -156,7 +156,7 @@ py -3.13 src/train.py --epochs 15 --batch-size 32 --lr 1e-4
 py -3.13 src/evaluate.py
 ```
 
-**Generate Grad-CAM visualizations:**
+**Generate Grad-CAM visualisations:**
 ```bash
 py -3.13 src/grad_cam_batch.py --per-class 5
 ```
