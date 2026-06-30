@@ -47,7 +47,7 @@ Full confusion matrix and per-image predictions: [`outputs/eval/`](outputs/eval/
 
 ### A note on the perfect score
 
-100% test accuracy is a number that invites skepticism, and rightly so — it's
+100% test accuracy is a number that invites skepticism, and rightly so it's
 the first thing I checked before trusting it. NEU-CLS is a well-documented
 benchmark with visually distinct, lab-clean defect classes, and near-perfect
 accuracy on this dataset is reported elsewhere in the literature, so the score
@@ -141,7 +141,7 @@ required, just a static HTML file that calls the FastAPI backend directly.
 2. Open `frontend/index.html` directly in a browser
 
 It displays the uploaded image alongside its Grad-CAM heatmap, the predicted
-class, and a confidence breakdown across all 6 defect categories — useful for
+class, and a confidence breakdown across all 6 defect categories... useful for
 quick visual demos without needing to use `curl` or Postman.
 
 ## Usage
