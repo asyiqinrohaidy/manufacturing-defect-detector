@@ -87,6 +87,10 @@ manufacturing-defect-detector/
 ├── outputs/
 │   ├── eval/                 # Confusion matrix, classification report, predictions.csv
 │   └── gradcam/              # Grad-CAM heatmap overlays, organized by class
+├── api/
+│   └── main.py               # FastAPI service (predict + Grad-CAM endpoints)
+├── frontend/
+│   └── index.html            # Drag-and-drop demo UI (calls the API directly)
 ├── src/
 │   ├── model.py              # ResNet18 model definition
 │   ├── dataset.py            # DataLoader / transform definitions
@@ -125,6 +129,20 @@ curl -X POST http://127.0.0.1:8000/predict/gradcam -F "file=@data/processed/test
 Both endpoints were tested live against real test images, including a low-confidence
 edge case (a faint scratch correctly classified at 0.725 confidence), confirming
 correct predictions and properly rendered Grad-CAM overlays end-to-end.
+
+## Frontend
+
+A lightweight single-page demo (`frontend/index.html`) provides drag-and-drop
+image upload with live inference results — no build tools or dependencies
+required, just a static HTML file that calls the FastAPI backend directly.
+
+**Run it:**
+1. Start the API server (see [API](#api) section above)
+2. Open `frontend/index.html` directly in a browser
+
+It displays the uploaded image alongside its Grad-CAM heatmap, the predicted
+class, and a confidence breakdown across all 6 defect categories — useful for
+quick visual demos without needing to use `curl` or Postman.
 
 ## Usage
 
