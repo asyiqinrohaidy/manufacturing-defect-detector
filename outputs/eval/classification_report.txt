@@ -1,0 +1,15 @@
+Test accuracy: 1.0000
+Test macro F1: 1.0000
+
+                 precision    recall  f1-score   support
+
+        crazing     1.0000    1.0000    1.0000        45
+      inclusion     1.0000    1.0000    1.0000        45
+        patches     1.0000    1.0000    1.0000        45
+ pitted_surface     1.0000    1.0000    1.0000        45
+rolled-in_scale     1.0000    1.0000    1.0000        45
+      scratches     1.0000    1.0000    1.0000        45
+
+       accuracy                         1.0000       270
+      macro avg     1.0000    1.0000    1.0000       270
+   weighted avg     1.0000    1.0000    1.0000       270

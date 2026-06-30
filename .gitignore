@@ -1,0 +1,6 @@
+data/raw/
+data/processed/
+models/*.pt
+src/__pycache__/
+__pycache__/
+*.pyc
