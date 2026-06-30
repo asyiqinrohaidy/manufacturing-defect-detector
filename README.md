@@ -99,6 +99,33 @@ manufacturing-defect-detector/
 └── README.md
 ```
 
+## API
+
+A FastAPI service (`api/main.py`) exposes the trained model for inference:
+
+| Endpoint | Method | Description |
+|---|---|---|
+| `/health` | GET | Health check, confirms model is loaded |
+| `/classes` | GET | Returns the list of defect classes |
+| `/predict` | POST | Upload an image, get predicted class + confidence + per-class probabilities |
+| `/predict/gradcam` | POST | Upload an image, get prediction + Grad-CAM heatmap overlay (base64 PNG) |
+
+**Run the server:**
+```bash
+py -3.13 -m uvicorn api.main:app --reload --port 8000
+```
+
+**Test it:**
+```bash
+curl http://127.0.0.1:8000/health
+curl -X POST http://127.0.0.1:8000/predict -F "file=@data/processed/test/crazing/crazing_101.jpg"
+curl -X POST http://127.0.0.1:8000/predict/gradcam -F "file=@data/processed/test/scratches/scratches_126.jpg"
+```
+
+Both endpoints were tested live against real test images, including a low-confidence
+edge case (a faint scratch correctly classified at 0.725 confidence), confirming
+correct predictions and properly rendered Grad-CAM overlays end-to-end.
+
 ## Usage
 
 **Train:**
@@ -119,5 +146,5 @@ py -3.13 src/grad_cam_batch.py --per-class 5
 ## Tech Stack
 
 Python, PyTorch, torchvision (ResNet18 transfer learning), OpenCV (Grad-CAM
-overlay rendering), scikit-learn (evaluation metrics), pandas, matplotlib/seaborn
-(reporting).
+overlay rendering), FastAPI (model serving), scikit-learn (evaluation metrics),
+pandas, matplotlib/seaborn (reporting).
